@@ -24,6 +24,9 @@ app.get(
         scope: ["profile", "email"]
     })
 );
+app.get("/auth/google/callback", () => {
+    hi: "there";
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);
