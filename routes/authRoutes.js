@@ -18,4 +18,8 @@ module.exports = app => {
     app.get("/api/current_user", (req, res) => {
         res.send(req.session);
     });
+
+    app.get("/api/closing/23", (req, res) => {
+        res.send("mesa 23 fechando...");
+    });
 };
