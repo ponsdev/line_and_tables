@@ -1,0 +1,51 @@
+body {
+    background-image: unset;
+}
+.tables_container {
+    display: block;
+    text-align: center;
+}
+.table {
+    position: relative;
+    width: 12em;
+    display: inline-block;
+    padding: 0.5em;
+    text-align: justify;
+}
+.tableIcon {
+    margin-top: 0px;
+    display: inline-block;
+    height: 45px;
+    width: 45px;
+    vertical-align: top;
+}
+.tableIcon p {
+    width: 100%;
+    text-align: center;
+    font-size: 1.7em;
+    margin-top: 7px;
+}
+.tableContent {
+    display: inline-block;
+    margin-left: 0.5em;
+}
+.tableID {
+    display: block;
+    font-weight: bold;
+}
+.tableSeats {
+    font-size: 0.8em;
+}
+.tableStatus {
+    font-size: 0.8em;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+h3 {
+    font-size: 1.2em;
+    margin: 0;
+    text-align: center;
+    background-color: rgb(190, 190, 190);
+}

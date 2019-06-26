@@ -1,0 +1,3 @@
+searchTable() {
+    console.log("procurando...");
+};
