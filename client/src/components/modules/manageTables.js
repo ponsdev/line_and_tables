@@ -1,3 +1,0 @@
-searchTable() {
-    console.log("procurando...");
-};

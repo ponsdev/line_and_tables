@@ -7,7 +7,7 @@ body {
     margin: auto;
 }
 .block {
-    margin: 1em;
+    margin: 1em 0;
 }
 .bgImg img {
     position: absolute;
@@ -17,4 +17,7 @@ body {
     height: 100%;
     z-index: -150;
     filter: grayscale(50%) opacity(75%);
+}
+.btn-small {
+    margin: 2px;
 }

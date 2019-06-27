@@ -60,7 +60,7 @@ class TableList extends React.Component {
     render() {
         return (
             <div className="block">
-                <h3>LISTA DE MESAS</h3>
+                <h3 class="grey lighten-2">MESAS</h3>
                 {this.renderContent()}
             </div>
         );

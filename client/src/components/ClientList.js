@@ -44,7 +44,7 @@ class ClientList extends React.Component {
     render() {
         return (
             <div className="block">
-                <h3>LISTA DE CLIENTES</h3>
+                <h3 class="grey lighten-2">CLIENTES</h3>
                 <div style={{ margin: "15px" }}>{this.clientItems()}</div>
                 <div>{this.showForm()}</div>
             </div>

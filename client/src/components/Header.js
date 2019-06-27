@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 class Header extends React.Component {
     renderContent() {
-        switch (this.props.auth) {
+        switch (this.props.user) {
             case null:
                 return;
             case false:
@@ -27,10 +27,12 @@ class Header extends React.Component {
                 <nav>
                     <div className="nav-wrapper grey lighten-2">
                         <Link
-                            to={this.props.auth ? "/ui" : "/"}
+                            to={this.props.user ? "/ui" : "/"}
                             className="brand-logo black-text"
                         >
-                            Fila pra que?
+                            {this.props.user
+                                ? "Fila pra que?! - " + this.props.user.name
+                                : "Fila pra que?!"}
                         </Link>
                         <a
                             className="sidenav-trigger"
@@ -62,8 +64,8 @@ class Header extends React.Component {
     }
 }
 
-function mapStateToProps({ auth }) {
-    return { auth };
+function mapStateToProps({ user }) {
+    return { user };
 }
 
 export default connect(mapStateToProps)(Header);
