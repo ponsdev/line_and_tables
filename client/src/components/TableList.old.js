@@ -1,30 +1,45 @@
 import React from "react";
-import { connect } from "react-redux";
-import * as actions from "../actions";
-
 import TableItem from "./TableItem";
-import Spinner from "./Spinner";
 import "./css/TableList.css";
+import Spinner from "./Spinner";
+// import dbJson from "./db/db.js";
+// import { fetchTables } from "../actions/index";
+// import { connect } from "react-redux";
+
+import axios from "axios";
 
 class TableList extends React.Component {
+    state = {
+        nTables: 1,
+        listTables: []
+    };
+
     componentDidMount() {
-        this.props.fetchTables();
+        const oi = async () => {
+            const res = await axios.get("/api/tables");
+            const dbJson = res.data;
+            this.setState({
+                nTables: dbJson.nTables,
+                listTables: dbJson.listTables
+            });
+        };
+        oi();
     }
 
     onClickTest = e => {
         var tableSelected = e.target.parentElement.children[0].textContent;
+        var tableObj = this.state.listTables[tableSelected - 1];
         if (window.confirm("Deseja ocupar a mesa?")) {
-            var newState = { ...this.props.tables };
-            newState.listTables[tableSelected - 1].status = 1;
-            this.props.updateTables(newState);
+            tableObj.status = 1;
+            this.setState({ tableObj });
         }
     };
 
     renderContent() {
-        if (this.props.tables === null) {
+        if (this.state.listTables.length === 0) {
             return <Spinner msg="Carregando mesas..." />;
         } else {
-            const rows = this.props.tables.listTables.map(table => {
+            const rows = this.state.listTables.map(table => {
                 return (
                     <TableItem
                         key={table.table}
@@ -50,10 +65,11 @@ class TableList extends React.Component {
     }
 }
 
-const mapStateToProps = function(state) {
-    return { tables: state.tables };
-};
-export default connect(
-    mapStateToProps,
-    actions
-)(TableList);
+// TESTE
+// function mapStateToProps({ tables }) {
+//     return { tables };
+// }
+// export default connect(mapStateToProps)(TableList);
+// FIM TESTE
+
+export default TableList;

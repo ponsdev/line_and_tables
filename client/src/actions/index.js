@@ -6,9 +6,11 @@ export const fetchUser = () => async dispatch => {
     dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-// TESTE
 export const fetchTables = () => async dispatch => {
     const res = await axios.get("/api/tables");
     dispatch({ type: FETCH_TABLES, payload: res.data });
 };
-// FIM TESTE
+
+export const updateTables = state => dispatch => {
+    dispatch({ type: FETCH_TABLES, payload: state });
+};

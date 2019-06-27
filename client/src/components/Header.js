@@ -9,15 +9,26 @@ class Header extends React.Component {
                 return;
             case false:
                 return (
-                    <a href="/auth/google" className="black-text">
-                        Login
-                    </a>
+                    <li>
+                        <a href="/auth/google" className="black-text">
+                            Login
+                        </a>
+                    </li>
                 );
             default:
                 return (
-                    <a href="/api/logout" className="black-text">
-                        Logout
-                    </a>
+                    <li>
+                        <li>
+                            <Link to="/options" className="black-text">
+                                Opções
+                            </Link>
+                        </li>
+                        <li>
+                            <a href="/api/logout" className="black-text">
+                                Logout
+                            </a>
+                        </li>
+                    </li>
                 );
         }
     }
@@ -34,28 +45,28 @@ class Header extends React.Component {
                                 ? "Fila pra que?! - " + this.props.user.name
                                 : "Fila pra que?!"}
                         </Link>
-                        <a
+                        <Link
                             className="sidenav-trigger"
-                            href="#"
+                            href="/"
                             data-target="mobile-demo"
                         >
                             <i className="material-icons">menu</i>
-                        </a>
+                        </Link>
                         <ul
                             id="nav-mobile"
                             className="right hide-on-med-and-down  black-text"
                         >
                             <li>
-                                <a href="/about" className="black-text">
+                                <Link to="/about" className="black-text">
                                     Sobre
-                                </a>
+                                </Link>
                             </li>
                             <li>
-                                <a href="/contact" className="black-text">
+                                <Link to="/contact" className="black-text">
                                     Contato
-                                </a>
+                                </Link>
                             </li>
-                            <li>{this.renderContent()}</li>
+                            {this.renderContent()}
                         </ul>
                     </div>
                 </nav>

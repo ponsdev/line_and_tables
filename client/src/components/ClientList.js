@@ -27,10 +27,14 @@ class ClientList extends React.Component {
             return <ClientForm onSubmit={this.onSubmit} />;
         }
     }
-    onSubmit = client => {
-        var arrClients = this.state.clients;
-        arrClients.push(client);
-        this.setState({ formOn: 0, clients: arrClients });
+    onSubmit = (opt, client = null) => {
+        if (opt === true) {
+            var arrClients = this.state.clients;
+            arrClients.push(client);
+            this.setState({ formOn: 0, clients: arrClients });
+        } else {
+            this.setState({ formOn: 0 });
+        }
     };
     clientItems = () => {
         var clientsText = "";

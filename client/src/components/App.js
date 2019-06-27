@@ -11,6 +11,7 @@ import ClientList from "./ClientList";
 
 const about = () => <div>Sobre...</div>;
 const contact = () => <div>Contato...</div>;
+const options = () => <div>Opções....</div>;
 const userInterface = () => (
     <div>
         <ClientList />
@@ -32,6 +33,7 @@ class App extends React.Component {
                         <Route exact path="/" component={Welcome} />
                         <Route exact path="/about/" component={about} />
                         <Route exact path="/contact/" component={contact} />
+                        <Route exact path="/options/" component={options} />
                         <Route path="/ui/" component={userInterface} />
                     </div>
                 </BrowserRouter>

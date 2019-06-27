@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import M from "materialize-css/dist/js/materialize.min.js";
 import "materialize-css/dist/css/materialize.min.css";
 
@@ -24,9 +25,18 @@ class Sidebar extends Component {
                 );
             default:
                 return (
-                    <a href="/api/logout" className="black-text">
-                        Logout
-                    </a>
+                    <li>
+                        <li>
+                            <Link to="/options" className="black-text">
+                                Opções
+                            </Link>
+                        </li>
+                        <li>
+                            <a href="/api/logout" className="black-text">
+                                Logout
+                            </a>
+                        </li>
+                    </li>
                 );
         }
     }
@@ -36,16 +46,16 @@ class Sidebar extends Component {
             <div>
                 <ul className="sidenav" id="mobile-demo">
                     <li>
-                        <a href="/about" className="black-text">
+                        <Link to="/about" className="black-text">
                             Sobre
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="/contact" className="black-text">
+                        <Link href="/contact" className="black-text">
                             Contato
-                        </a>
+                        </Link>
                     </li>
-                    <li>{this.renderContent()}</li>
+                    {this.renderContent()}
                 </ul>
             </div>
         );
