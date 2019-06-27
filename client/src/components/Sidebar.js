@@ -13,7 +13,7 @@ class Sidebar extends Component {
     }
 
     renderContent() {
-        switch (this.props.auth) {
+        switch (this.props.user) {
             case null:
                 return;
             case false:
@@ -34,7 +34,7 @@ class Sidebar extends Component {
     render() {
         return (
             <div>
-                <ul class="sidenav" id="mobile-demo">
+                <ul className="sidenav" id="mobile-demo">
                     <li>
                         <a href="/about" className="black-text">
                             Sobre
@@ -52,8 +52,8 @@ class Sidebar extends Component {
     }
 }
 
-function mapStateToProps({ auth }) {
-    return { auth };
+function mapStateToProps({ user }) {
+    return { user };
 }
 
 export default connect(mapStateToProps)(Sidebar);

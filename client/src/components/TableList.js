@@ -2,7 +2,11 @@ import React from "react";
 import TableItem from "./TableItem";
 import "./css/TableList.css";
 import Spinner from "./Spinner";
-import dbJson from "./db/db.js";
+// import dbJson from "./db/db.js";
+// import { fetchTables } from "../actions/index";
+// import { connect } from "react-redux";
+
+import axios from "axios";
 
 class TableList extends React.Component {
     state = {
@@ -11,10 +15,15 @@ class TableList extends React.Component {
     };
 
     componentDidMount() {
-        this.setState({
-            nTables: dbJson.nTables,
-            listTables: dbJson.listTables
-        });
+        const oi = async () => {
+            const res = await axios.get("/api/tables");
+            const dbJson = res.data;
+            this.setState({
+                nTables: dbJson.nTables,
+                listTables: dbJson.listTables
+            });
+        };
+        oi();
     }
 
     onClickTest = e => {
@@ -30,29 +39,18 @@ class TableList extends React.Component {
         if (this.state.listTables.length === 0) {
             return <Spinner msg="Carregando mesas..." />;
         } else {
-            let rows = [];
-            for (var x in this.state.listTables) {
-                let seats = "0" + this.state.listTables[x].seats + " lugares";
-                let status = "";
-                let color = "";
-                if (this.state.listTables[x].status === 0) {
-                    status = "DISPONÍVEL";
-                    color = "green";
-                } else {
-                    status = "OCUPADA";
-                    color = "red";
-                }
-                rows.push(
+            const rows = this.state.listTables.map(table => {
+                return (
                     <TableItem
-                        key={"table_" + x}
-                        tableID={this.state.listTables[x].table}
-                        seats={seats}
-                        status={status}
-                        color={color}
+                        key={table.table}
+                        tableID={table.table}
+                        seats={"0" + table.seats + " lugares"}
+                        status={table.status === 0 ? "DISPONÍVEL" : "OCUPADA"}
+                        color={table.status === 0 ? "green" : "red"}
                         onClick={this.onClickTest}
                     />
                 );
-            }
+            });
             return <div className="tables_container">{rows}</div>;
         }
     }
@@ -60,11 +58,18 @@ class TableList extends React.Component {
     render() {
         return (
             <div className="block">
-                <h3 class="grey lighten-2">MESAS</h3>
+                <h3 className="grey lighten-2">MESAS</h3>
                 {this.renderContent()}
             </div>
         );
     }
 }
+
+// TESTE
+// function mapStateToProps({ tables }) {
+//     return { tables };
+// }
+// export default connect(mapStateToProps)(TableList);
+// FIM TESTE
 
 export default TableList;

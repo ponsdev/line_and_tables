@@ -1,3 +1,4 @@
+const dbJson = require("../models/db");
 const passport = require("passport");
 
 module.exports = app => {
@@ -25,7 +26,7 @@ module.exports = app => {
         res.send(req.user);
     });
 
-    app.get("/api/closing/23", (req, res) => {
-        res.send("mesa 23 fechando...");
+    app.get("/api/tables", (req, res) => {
+        res.send(dbJson);
     });
 };

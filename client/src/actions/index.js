@@ -1,7 +1,14 @@
 import axios from "axios";
-import { FETCH_USER } from "./types";
+import { FETCH_USER, FETCH_TABLES } from "./types";
 
 export const fetchUser = () => async dispatch => {
     const res = await axios.get("/api/current_user");
     dispatch({ type: FETCH_USER, payload: res.data });
 };
+
+// TESTE
+export const fetchTables = () => async dispatch => {
+    const res = await axios.get("/api/tables");
+    dispatch({ type: FETCH_TABLES, payload: res.data });
+};
+// FIM TESTE
