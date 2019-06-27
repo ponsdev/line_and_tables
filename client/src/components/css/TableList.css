@@ -1,6 +1,10 @@
 body {
     background-image: unset;
 }
+.container {
+    margin-top: 0.5em;
+    width: 95%;
+}
 .tables_container {
     display: block;
     text-align: center;

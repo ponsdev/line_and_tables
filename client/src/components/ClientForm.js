@@ -41,7 +41,12 @@ class ClientForm extends React.Component {
                     />
                 </div>
                 <div style={{ textAlign: "center", marginBottom: "10px" }}>
-                    <button className="ui button">Adicionar</button>
+                    <button className="waves-effect waves-light btn-small grey darken-3">
+                        Adicionar
+                    </button>
+                    <button className="waves-effect waves-light btn-small grey darken-3">
+                        Cancelar
+                    </button>
                 </div>
             </form>
         );

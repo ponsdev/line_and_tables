@@ -13,12 +13,14 @@ class ClientList extends React.Component {
             return (
                 <div style={{ margin: "5px", textAlign: "center" }}>
                     <button
-                        className="ui button"
+                        className="waves-effect waves-light btn-small grey darken-3"
                         onClick={e => this.setState({ formOn: 1 })}
                     >
                         Adicionar
                     </button>
-                    <button className="ui button">Remover</button>
+                    <button className="waves-effect waves-light btn-small grey darken-3">
+                        Remover
+                    </button>
                 </div>
             );
         } else {
@@ -41,7 +43,7 @@ class ClientList extends React.Component {
     };
     render() {
         return (
-            <div>
+            <div className="block">
                 <h3>LISTA DE CLIENTES</h3>
                 <div style={{ margin: "15px" }}>{this.clientItems()}</div>
                 <div>{this.showForm()}</div>

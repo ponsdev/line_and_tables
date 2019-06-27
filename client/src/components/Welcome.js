@@ -17,7 +17,7 @@ class Welcome extends React.Component {
                 </div>
                 <h1>Pra que fila?!</h1>
                 <a href="/ui">
-                    <h2>Welcome!</h2>
+                    <h2>Entrar!</h2>
                 </a>
             </div>
         );
