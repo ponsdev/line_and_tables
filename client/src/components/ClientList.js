@@ -41,11 +41,14 @@ class ClientList extends React.Component {
             this.props.updateClients(arrClients);
         }
         this.setState({ formOn: 0 });
+        const arrTables = [...this.props.tables];
+        this.props.updateTables(arrTables);
     };
     onSelect = e => {
-        var [name, seats, tel1, arrivalTime] = e.target.text.split(" - ");
-        console.log(name);
-        this.setState({ selected: { name: name.trim(), tel1: tel1.trim() } });
+        var client = e.target.text.split(" - ");
+        this.setState({
+            selected: { name: client[0].trim(), tel1: client[2].trim() }
+        });
     };
     onRemove = e => {
         var arrClients = this.props.clients;
@@ -93,7 +96,7 @@ class ClientList extends React.Component {
 }
 
 const mapStateToProps = function(state) {
-    return { clients: state.clients };
+    return { clients: state.clients, tables: state.tables };
 };
 export default connect(
     mapStateToProps,

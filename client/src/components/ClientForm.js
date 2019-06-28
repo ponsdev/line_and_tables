@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 class ClientForm extends React.Component {
     state = {
@@ -9,6 +11,24 @@ class ClientForm extends React.Component {
         email: "",
         seats: "",
         arrivalTime: ""
+    };
+    componentDidMount() {
+        this.showHighlight("");
+    }
+    showHighlight = seats => {
+        var arrTables = JSON.parse(JSON.stringify(this.props.tables));
+        arrTables = arrTables.map(i => {
+            if (seats === "") {
+                seats = 1;
+            }
+            if (i.status === 0 && seats <= i.seats) {
+                i.status = 0;
+            } else {
+                i.status = 5;
+            }
+            return i;
+        });
+        this.props.highlightTables(arrTables);
     };
     onFormSubmit = event => {
         event.preventDefault();
@@ -35,7 +55,7 @@ class ClientForm extends React.Component {
                                 type="text"
                                 className="validate"
                                 value={this.state.name}
-                                pattern="[a-z\s]+$"
+                                pattern="[A-Za-z\ ]+$"
                                 required
                                 onChange={e =>
                                     this.setState({ name: e.target.value })
@@ -50,6 +70,7 @@ class ClientForm extends React.Component {
                             <input
                                 type="tel"
                                 className="validate"
+                                maxLength="11"
                                 pattern="[0-9]{2}[0-9]{4,6}[0-9]{3,4}$"
                                 // pattern="\([0-9]{2}\)[0-9]{4,6}[0-9]{3,4}$"
                                 value={this.state.tel1}
@@ -64,6 +85,7 @@ class ClientForm extends React.Component {
                             <input
                                 type="tel"
                                 className="validate"
+                                maxLength="11"
                                 value={this.state.tel2}
                                 onChange={e =>
                                     this.setState({ tel2: e.target.value })
@@ -75,6 +97,7 @@ class ClientForm extends React.Component {
                             <input
                                 type="tel"
                                 className="validate"
+                                maxLength="11"
                                 value={this.state.tel3}
                                 onChange={e =>
                                     this.setState({ tel3: e.target.value })
@@ -100,12 +123,14 @@ class ClientForm extends React.Component {
                             <label>Número de Lugares</label>
                             <input
                                 type="text"
-                                pattern="[0-9]"
+                                // pattern="[0-9]{1-2}"
+                                maxLength="2"
                                 className="validate"
                                 value={this.state.seats}
                                 required
                                 onChange={e => {
                                     this.setState({ seats: e.target.value });
+                                    this.showHighlight(e.target.value);
                                 }}
                             />
                         </div>
@@ -127,4 +152,10 @@ class ClientForm extends React.Component {
     }
 }
 
-export default ClientForm;
+const mapStateToProps = function(state) {
+    return { tables: state.tables, tables_hl: state.tables_hl };
+};
+export default connect(
+    mapStateToProps,
+    actions
+)(ClientForm);

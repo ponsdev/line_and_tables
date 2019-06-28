@@ -9,21 +9,21 @@ module.exports = {
             table: 1,
             seats: 6,
             adjTables: "",
-            status: 0,
+            status: 3,
             checkinTime: ""
         },
         {
             table: 2,
             seats: 4,
             adjTables: "",
-            status: 0,
+            status: 3,
             checkinTime: ""
         },
         {
             table: 3,
             seats: 2,
             adjTables: "",
-            status: 0,
+            status: 3,
             checkinTime: ""
         },
         {
@@ -58,7 +58,7 @@ module.exports = {
             table: 8,
             seats: 4,
             adjTables: "",
-            status: 0,
+            status: 2,
             checkinTime: ""
         },
         {
@@ -86,7 +86,7 @@ module.exports = {
             table: 12,
             seats: 2,
             adjTables: "",
-            status: 0,
+            status: 2,
             checkinTime: ""
         },
         {
@@ -100,7 +100,7 @@ module.exports = {
             table: 14,
             seats: 4,
             adjTables: "",
-            status: 0,
+            status: 2,
             checkinTime: ""
         },
         {
