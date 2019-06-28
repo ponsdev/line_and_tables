@@ -111,5 +111,24 @@ module.exports = {
             checkinTime: ""
         }
     ],
-    clients: []
+    clients: [
+        {
+            name: "Vinicius Pons",
+            tel1: "41999991818",
+            tel2: "",
+            tel3: "",
+            email: "vinicius@arqpons.com",
+            seats: 6,
+            arrivalTime: "21:02 27/07"
+        },
+        {
+            name: "Benicio Hasegawa",
+            tel1: "41995685412",
+            tel2: "",
+            tel3: "",
+            email: "benicio@gmail.com",
+            seats: 4,
+            arrivalTime: "20:45 27/07"
+        }
+    ]
 };
