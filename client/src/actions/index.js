@@ -42,3 +42,7 @@ export const fetchClients = () => async dispatch => {
 export const updateClients = state => async dispatch => {
     dispatch({ type: FETCH_CLIENTS, payload: state });
 };
+
+export const addClient = client => async dispatch => {
+    axios.post("/api/clients", client);
+};

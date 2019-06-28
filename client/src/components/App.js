@@ -35,7 +35,7 @@ class App extends React.Component {
                         <Route exact path="/about/" component={about} />
                         <Route exact path="/contact/" component={contact} />
                         <Route exact path="/options/" component={options} />
-                        <Route path="/ui/" component={userInterface} />
+                        <Route exact path="/ui/" component={userInterface} />
                     </div>
                 </BrowserRouter>
             </div>

@@ -38,6 +38,7 @@ class ClientList extends React.Component {
         if (opt === true) {
             var arrClients = this.props.clients;
             arrClients.push(client);
+            this.props.addClient(client);
             this.props.updateClients(arrClients);
         }
         this.setState({ formOn: 0 });
