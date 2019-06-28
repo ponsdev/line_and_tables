@@ -26,7 +26,14 @@ module.exports = app => {
         res.send(req.user);
     });
 
+    app.get("/api/config", (req, res) => {
+        res.send(dbJson.cfg);
+    });
     app.get("/api/tables", (req, res) => {
-        res.send(dbJson);
+        res.send(dbJson.tables);
+    });
+
+    app.get("/api/clients", (req, res) => {
+        res.send(dbJson.clients);
     });
 };

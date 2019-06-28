@@ -1,13 +1,17 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 import ClientForm from "./ClientForm";
-// import dbJson from "./db/db";
+import Spinner from "./Spinner";
 
 class ClientList extends React.Component {
     state = {
         formOn: 0,
-        // clients: dbJson.clientList
-        clients: []
+        selected: {}
     };
+    componentDidMount() {
+        this.props.fetchClients();
+    }
     showForm() {
         if (this.state.formOn === 0) {
             return (
@@ -18,7 +22,10 @@ class ClientList extends React.Component {
                     >
                         Adicionar
                     </button>
-                    <button className="waves-effect waves-light btn-small grey darken-3">
+                    <button
+                        className="waves-effect waves-light btn-small grey darken-3"
+                        onClick={this.onRemove}
+                    >
                         Remover
                     </button>
                 </div>
@@ -29,31 +36,66 @@ class ClientList extends React.Component {
     }
     onSubmit = (opt, client = null) => {
         if (opt === true) {
-            var arrClients = this.state.clients;
+            var arrClients = this.props.clients;
             arrClients.push(client);
-            this.setState({ formOn: 0, clients: arrClients });
+            this.props.updateClients(arrClients);
+        }
+        this.setState({ formOn: 0 });
+    };
+    onSelect = e => {
+        var [name, seats, tel1, arrivalTime] = e.target.text.split(" - ");
+        console.log(name);
+        this.setState({ selected: { name: name.trim(), tel1: tel1.trim() } });
+    };
+    onRemove = e => {
+        var arrClients = this.props.clients;
+        arrClients = arrClients.filter(item => {
+            return item.name !== this.state.selected.name.trim();
+        });
+        this.props.updateClients(arrClients);
+        // console.log(arrClients);
+    };
+    renderContent() {
+        if (this.props.clients === null) {
+            return <Spinner msg="Carregando clientes..." />;
         } else {
-            this.setState({ formOn: 0 });
+            const rows = this.props.clients.map(client => {
+                return (
+                    <a
+                        key={this.props.clients.indexOf(client)}
+                        href="#!"
+                        className={
+                            this.state.selected.name === client.name &&
+                            this.state.selected.tel1 === client.tel1
+                                ? "collection-item active"
+                                : "collection-item"
+                        }
+                        onClick={this.onSelect}
+                    >
+                        {`${client.name}   -   ${client.seats} lugares   -   ${
+                            client.tel1
+                        }   -   Chegada: ${client.arrivalTime}`}
+                    </a>
+                );
+            });
+            return rows;
         }
-    };
-    clientItems = () => {
-        var clientsText = "";
-        for (var x in this.state.clients) {
-            clientsText += `${this.state.clients[x].name} - ${
-                this.state.clients[x].tel
-            } - ${this.state.clients[x].seats} lugares.   `;
-        }
-        return clientsText;
-    };
+    }
     render() {
         return (
             <div className="block">
                 <h3 className="grey lighten-2">CLIENTES</h3>
-                <div style={{ margin: "15px" }}>{this.clientItems()}</div>
+                <div className="collection">{this.renderContent()}</div>
                 <div>{this.showForm()}</div>
             </div>
         );
     }
 }
 
-export default ClientList;
+const mapStateToProps = function(state) {
+    return { clients: state.clients };
+};
+export default connect(
+    mapStateToProps,
+    actions
+)(ClientList);

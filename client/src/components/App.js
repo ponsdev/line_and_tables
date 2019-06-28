@@ -22,6 +22,7 @@ const userInterface = () => (
 class App extends React.Component {
     componentDidMount() {
         this.props.fetchUser();
+        this.props.fetchConfig();
     }
     render() {
         return (

@@ -1,9 +1,9 @@
-import { FETCH_TABLES } from "../actions/types";
+import { FETCH_CLIENTS } from "../actions/types";
 
-export default function(state = [], action) {
+export default function(state = null, action) {
     // console.log(action);
     switch (action.type) {
-        case FETCH_TABLES:
+        case FETCH_CLIENTS:
             return action.payload || false;
         default:
             return state;

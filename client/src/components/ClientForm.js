@@ -7,11 +7,22 @@ class ClientForm extends React.Component {
         tel2: "",
         tel3: "",
         email: "",
-        seats: ""
+        seats: "",
+        arrivalTime: ""
     };
     onFormSubmit = event => {
         event.preventDefault();
-        this.props.onSubmit(true, this.state);
+        let client = this.state;
+
+        var curDate = new Date();
+        var time = curDate.getHours() + ":" + curDate.getMinutes();
+        var date = curDate.getDate();
+        var month = curDate.getMonth(); //Be careful! January is 0 not 1
+        var year = curDate.getFullYear();
+        var dateString = time + " " + date + "/" + (month + 1) + "/" + year;
+
+        client.arrivalTime = dateString;
+        this.props.onSubmit(true, client);
     };
     render() {
         return (
@@ -89,13 +100,13 @@ class ClientForm extends React.Component {
                             <label>Número de Lugares</label>
                             <input
                                 type="text"
-                                pattern="[0-9]{2}"
+                                pattern="[0-9]"
                                 className="validate"
                                 value={this.state.seats}
                                 required
-                                onChange={e =>
-                                    this.setState({ seats: e.target.value })
-                                }
+                                onChange={e => {
+                                    this.setState({ seats: e.target.value });
+                                }}
                             />
                         </div>
                     </div>

@@ -11,12 +11,20 @@ class TableList extends React.Component {
         this.props.fetchTables();
     }
 
-    onClickTest = e => {
+    onSelectTable = e => {
         var tableSelected = e.target.parentElement.children[0].textContent;
-        if (window.confirm("Deseja ocupar a mesa?")) {
-            var newState = { ...this.props.tables };
-            newState.listTables[tableSelected - 1].status = 1;
-            this.props.updateTables(newState);
+        if (this.props.tables[tableSelected - 1].status === 0) {
+            if (window.confirm("Deseja ocupar a mesa?")) {
+                var newState = [...this.props.tables];
+                newState[tableSelected - 1].status = 1;
+                this.props.updateTables(newState);
+            }
+        } else {
+            if (window.confirm("Deseja liberar a mesa?")) {
+                newState = [...this.props.tables];
+                newState[tableSelected - 1].status = 0;
+                this.props.updateTables(newState);
+            }
         }
     };
 
@@ -24,7 +32,7 @@ class TableList extends React.Component {
         if (this.props.tables === null) {
             return <Spinner msg="Carregando mesas..." />;
         } else {
-            const rows = this.props.tables.listTables.map(table => {
+            const rows = this.props.tables.map(table => {
                 return (
                     <TableItem
                         key={table.table}
@@ -32,7 +40,7 @@ class TableList extends React.Component {
                         seats={"0" + table.seats + " lugares"}
                         status={table.status === 0 ? "DISPONÍVEL" : "OCUPADA"}
                         color={table.status === 0 ? "green" : "red"}
-                        onClick={this.onClickTest}
+                        onClick={this.onSelectTable}
                     />
                 );
             });

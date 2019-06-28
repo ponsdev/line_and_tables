@@ -17,9 +17,9 @@ class Header extends React.Component {
                 );
             default:
                 return (
-                    <li>
+                    <div>
                         <li>
-                            <Link to="/options" className="black-text">
+                            <Link to={"/options"} className="black-text">
                                 Opções
                             </Link>
                         </li>
@@ -28,7 +28,7 @@ class Header extends React.Component {
                                 Logout
                             </a>
                         </li>
-                    </li>
+                    </div>
                 );
         }
     }
@@ -41,13 +41,13 @@ class Header extends React.Component {
                             to={this.props.user ? "/ui" : "/"}
                             className="brand-logo black-text"
                         >
-                            {this.props.user
-                                ? "Fila pra que?! - " + this.props.user.name
+                            {this.props.cfg
+                                ? this.props.cfg.placeName
                                 : "Fila pra que?!"}
                         </Link>
                         <Link
                             className="sidenav-trigger"
-                            href="/"
+                            to="/"
                             data-target="mobile-demo"
                         >
                             <i className="material-icons">menu</i>
@@ -75,8 +75,8 @@ class Header extends React.Component {
     }
 }
 
-function mapStateToProps({ user }) {
-    return { user };
-}
+const mapStateToProps = function(state) {
+    return { user: state.user, cfg: state.cfg };
+};
 
 export default connect(mapStateToProps)(Header);

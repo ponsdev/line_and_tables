@@ -25,7 +25,7 @@ class Sidebar extends Component {
                 );
             default:
                 return (
-                    <li>
+                    <div>
                         <li>
                             <Link to="/options" className="black-text">
                                 Opções
@@ -36,7 +36,7 @@ class Sidebar extends Component {
                                 Logout
                             </a>
                         </li>
-                    </li>
+                    </div>
                 );
         }
     }
@@ -51,7 +51,7 @@ class Sidebar extends Component {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/contact" className="black-text">
+                        <Link to="/contact" className="black-text">
                             Contato
                         </Link>
                     </li>
