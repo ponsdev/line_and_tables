@@ -17,7 +17,7 @@ class Welcome extends React.Component {
                 </div>
                 <h1>Fila pra que?!</h1>
                 <a href="/auth/google">
-                    <h2>Entrar!</h2>
+                    <h2>Acesse aqui!</h2>
                 </a>
             </div>
         );
