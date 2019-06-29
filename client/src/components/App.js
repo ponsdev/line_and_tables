@@ -6,10 +6,10 @@ import * as actions from "../actions";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Welcome from "./Welcome";
+import About from './About';
 import TableList from "./TableList";
 import ClientList from "./ClientList";
 
-const about = () => <div>Sobre...</div>;
 const contact = () => <div>Contato...</div>;
 const options = () => <div>Opções....</div>;
 const userInterface = () => (
@@ -32,7 +32,7 @@ class App extends React.Component {
                         <Header />
                         <Sidebar />
                         <Route exact path="/" component={Welcome} />
-                        <Route exact path="/about/" component={about} />
+                        <Route exact path="/about/" component={About} />
                         <Route exact path="/contact/" component={contact} />
                         <Route exact path="/options/" component={options} />
                         <Route exact path="/ui/" component={userInterface} />
